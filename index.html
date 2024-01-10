@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,29 +10,56 @@
     <link rel="stylesheet" href="./assets/css/style.css" />
     <title>Weather Dashboard</title>
 </head>
+
 <body>
+    <div class='container-fluid'> 
+        <div class='row navbar headline'>Weather Dashboard</div>
+        <div class='row'>
+            <div class='col search col-3'> </div>
+            <!-- choices: either on line 18 hardcode an inputfield and a search button OR write it on a JS page -->
+            <!-- when I create element for city history in JS, make sure and add the row to col-3 -->
+            <div class='col forecast col-9'>
+                <div class='row current'></div>
+                <div class='row fiveday'>
+                    <div class="column col-2 day-1">
+                        <h1></h1> 
+                        <!-- Choice: create elements and append h1 through h3 in JS including API calls for the content -->
+                        <!--look up code for putting in an icon-->
+                        <h3></h3>
+                        <h3></h3>
+                        <h3></h3>
+                    </div>
+                    <div class="column col-2 day-2"></div>
+                    <div class="column col-2 day-3"></div>
+                    <div class="column col-2 day-4"></div>
+                    <div class="column col-2 day-5"></div>
+                </div>
+            </div>
+
+
+
+
+        </div>
+    </div>
 
 
 
 
 
-
-    
     <!-- For HTML page to use Bootstrap that uses some Java with CSS-->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
 
-<!-- Link JQuery third-party library -->
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <!-- Link JQuery third-party library -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
-<!-- Link the DayJS library -->
-<script
-src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
-integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
-crossorigin="anonymous"
-></script>
+    <!-- Link the DayJS library -->
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
+        integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U=" crossorigin="anonymous"></script>
 
-<!-- Link JavaScript page that is in assets folder -->
-<script src="./assets/js/script.js"></script>
+    <!-- Link JavaScript page that is in assets folder -->
+    <script src="./assets/js/script.js"></script>
 </body>
 
 </html>
