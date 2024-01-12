@@ -15,16 +15,17 @@
     <div class='container-fluid'> 
         <div class='row navbar headline d-flex justify-content-center'>Weather Dashboard</div>
         <div class='row'>
-            <div class='col search col-3'> </div>
-            <!-- choices: either on line 18 hardcode an inputfield and a search button OR write it on a JS page -->
+            <div class='col search col-3'> 
+            <h2>Search for a City:</h2>
+            <input type="text" id="cityName" placeholder="Enter City Name" name="cityName">
+            <button type="button" id="searchButton">Search</button> 
             <!-- when I create element for city history in JS, make sure and add the row to col-3 -->
+            </div>
             <div class='col forecast col-9'>
                 <div class='row current'></div>
                 <div class='row fiveday'>
                     <div class="column col-2 day-1">
                         <h1 id="cityDate"></h1> 
-                        <!-- Choice: create elements and append h1 through h3 in JS including API calls for the content -->
-                        <!--look up code for putting in an icon-->
                         <h3 id="temp"></h3>
                         <h3 id="wind"></h3>
                         <h3 id="humidity"></h3>

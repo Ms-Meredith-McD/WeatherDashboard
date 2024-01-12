@@ -10,8 +10,8 @@ function convertMPStoMPH(metersPerSecond) {
 var getGeoCode = 'http://api.openweathermap.org/geo/1.0/direct?q=Minneapolis&limit=1&units=imperial&appid=12f732d403aab6d939305ecbc4e4f1c3'
 
 
-async function getLocApi(requestUrl) {
-    const getLoc = await fetch(requestUrl)
+async function getLocApi(request) {
+    const getLoc = await fetch(request)
     const location = await getLoc.json()
     console.log(location)
     
@@ -56,8 +56,7 @@ function currentWx(forecast) {
     document.querySelector('#temp').textContent='Temp: ' + temp;
     document.querySelector('#wind').textContent='Wind: ' + windMPH;
     document.querySelector('#humidity').textContent=humid + '%';
-    
-}
+    }
 
 
 getLocApi(getGeoCode)
