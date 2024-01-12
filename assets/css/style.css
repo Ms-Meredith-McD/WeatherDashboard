@@ -1,7 +1,29 @@
+/* nav bar */
 .headline {
-    background-color:blue;
+    background-color: blue;
     color: blanchedalmond;
     align-content: center;
-    font-size:xx-large;
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-size: xx-large;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+/* forecast */
+.forecast {
+    border: 1px solid black;
+}
+/* day two */
+.column.col-2.day-2 {
+    border: 1px solid black;
+}
+/* day three*/
+.column.col-2.day-3 {
+    border: 1px solid black;
+}
+    /* day four*/
+.column.col-2.day-4 {
+    border: 1px solid black;
+}
+
+/* day five*/
+.column.col-2.day-5 {
+border: 1px solid black;
 }

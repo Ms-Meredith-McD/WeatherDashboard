@@ -12,8 +12,11 @@
 </head>
 
 <body>
+    <!-- building the container for the whole page -->
     <div class='container-fluid'> 
+        <!-- building the container for the navbar header "Weather Dashboard" -->
         <div class='row navbar headline d-flex justify-content-center'>Weather Dashboard</div>
+        <!-- building the container for the search box, search button, and search results -->
         <div class='row'>
             <div class='col search col-3'> 
             <h2>Search for a City:</h2>
@@ -21,25 +24,43 @@
             <button type="button" id="searchButton">Search</button> 
             <!-- when I create element for city history in JS, make sure and add the row to col-3 -->
             </div>
+            <!-- building the container for the current forecast -->
             <div class='col forecast col-9'>
                 <div class='row current'></div>
                 <div class='row fiveday'>
                     <div class="column col-2 day-1">
-                        <h1 id="cityDate"></h1> 
-                        <h3 id="temp"></h3>
-                        <h3 id="wind"></h3>
-                        <h3 id="humidity"></h3>
+                        <h1 id="cityDate current"></h1> 
+                        <h3 id="temp current"></h3>
+                        <h3 id="wind current"></h3>
+                        <h3 id="humidity current"></h3>
                     </div>
+                    <!-- building the containers for the 5 day forecast, will need to mess around with margins because 5 doesn't divide into 12 evenly -->
                     <div class="column col-2 day-2"></div>
+                    <h3 id="cityDate five-day"></h3>
+                    <h3 id="wxIcon"></h3>
+                    <h3 id="temp five-day"></h3>
+                    <h3 id="wind five-day"></h3>
+                    <h3 id="humid five-day"></h3>
                     <div class="column col-2 day-3"></div>
+                    <h3 id="cityDate five-day"></h3>
+                    <h3 id="wxIcon"></h3>
+                    <h3 id="temp five-day"></h3>
+                    <h3 id="wind five-day"></h3>
+                    <h3 id="humid five-day"></h3>
                     <div class="column col-2 day-4"></div>
+                    <h3 id="cityDate five-day"></h3>
+                    <h3 id="wxIcon"></h3>
+                    <h3 id="temp five-day"></h3>
+                    <h3 id="wind five-day"></h3>
+                    <h3 id="humid five-day"></h3>
                     <div class="column col-2 day-5"></div>
+                    <h3 id="cityDate five-day"></h3>
+                    <h3 id="wxIcon"></h3>
+                    <h3 id="temp five-day"></h3>
+                    <h3 id="wind five-day"></h3>
+                    <h3 id="humid five-day"></h3>
                 </div>
             </div>
-
-
-
-
         </div>
     </div>
 
