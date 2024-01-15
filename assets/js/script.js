@@ -13,30 +13,24 @@ searchButton.addEventListener('click', getLocApi)
 
 //need to save searches to local storage and display most recent first and so on
 
-// MY OFFICE HOURS QUESTIONS:
-// Why can't I get the city entered into the input box to input into the getGeoCode variable?
-// I'm not sure what I should write in the 2nd half of my event listener after "click"?
-// How can I better figure out where the data I want is buried in the API arrays?
-
-// get city name from input box and add it to the api address that gets lat and long from the city name
 const searchThisCity = document.getElementById("cityName")
 // var getGeoCode = 'http://api.openweathermap.org/geo/1.0/direct?q=' +searchThisCity + '&limit=1&units=imperial&appid=12f732d403aab6d939305ecbc4e4f1c3'
 
 // function that uses the api call to get lat and long from city name
 async function getLocApi() {
     var cityName = searchThisCity.value
-    console.log(cityName)
+    // console.log(cityName)
     var getGeoCode = 'https://api.openweathermap.org/geo/1.0/direct?q=' +cityName + '&limit=1&units=imperial&appid=12f732d403aab6d939305ecbc4e4f1c3'
 
     const getLoc = await fetch(getGeoCode)
     const location = await getLoc.json()
-    console.log(location)
+    // console.log(location)
     
     var latitude = location[0].lat;
-    console.log(latitude)
+    // console.log(latitude)
     
     var longitude = location[0].lon;
-    console.log(longitude)
+    // console.log(longitude)
 
     var latlongWxUrl='https://api.openweathermap.org/data/2.5/forecast?lat=' +latitude + '&lon=' +longitude + '&appid=12f732d403aab6d939305ecbc4e4f1c3'
     getWx(latlongWxUrl)
@@ -50,31 +44,35 @@ async function getWx(latlongWxUrl) {
     currentWx(forecast)
 }
 
-// function that displays data from the api call for weather data to the web page, but my traversing the array isn't working (I think that's the issue)
+// console log a cityName search and see the results of the "list" array, then I can see the data that I want to pull for the variables
 function currentWx(forecast) {
     const city = forecast.city.name;
-    // const date = forecast.list[2].dt_txt;
-    // const formattedDate = dayjs(date).format('M/D/YYYY');
-    // const wxIcon = forecast.list[2].weather[0].main;
-    // const temp = forecast.list[2].main.temp;
-    // const humid = forecast.list[2].main.humidity;
-    // const today = dayjs().format('M/DD/YYY');
-    // const wind = forecast.list[2].wind.speed;
-    // const windMPH = convertMPStoMPH(wind);
-    // console.log(city);
-    // console.log(date);
-    // console.log(formattedDate);
-    // console.log(wxIcon);
-    // console.log(temp)
-    // console.log(humid);
-    // console.log(today);
-    // console.log(wind);
-    // console.log(windMPH)
+    console.log('City: ' + city)
+    const date = forecast.list[0].dt_txt
+    console.log('Date: ' + date)
+    const formattedDate = dayjs(date).format('M/D/YYYY');
+    console.log('Formatted Date: ' + formattedDate)
+    const wxIcon = forecast.list[0].weather[0].icon;
+    console.log('Icon: ' + wxIcon)
+    const temp = forecast.list[0].main.temp;
+    console.log(temp + "K")
+    const tempF = (temp -273.15) *9/5 + 32;
+    console.log(tempF + 'F')
+    const humid = forecast.list[0].main.humidity;
+    console.log('Humidity ' + humid + '%')
+    const today = dayjs().format('M/DD/YYYY');
+    console.log('Today: ' + today)
+    const wind = forecast.list[0].wind.speed;
+    const windMPH = convertMPStoMPH(wind);
+    console.log('Wind meters per second: ' + wind)
+    console.log('Wind miles per hour: ' + windMPH)
 
-    // document.querySelector('#cityDate').textContent=city + ' ' + '(' + today + ')' + ' ' + wxIcon;
-    // document.querySelector('#temp').textContent='Temp: ' + temp;
-    // document.querySelector('#wind').textContent='Wind: ' + windMPH;
-    // document.querySelector('#humidity').textContent=humid + '%';
+    // try using template literals  
+    document.querySelector('#cityDate').textContent = `${city} (${today}) ${wxIcon}`;
+    document.querySelector('#temp').textContent = `${tempF} C`;
+    document.querySelector('#wind').textContent = `${windMPH} MPH`;
+    document.querySelector('#humidity').textContent = `${humid}%`;
+
     }
 
 
