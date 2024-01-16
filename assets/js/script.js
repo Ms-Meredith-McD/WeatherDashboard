@@ -68,10 +68,10 @@ function currentWx(forecast) {
     console.log('Wind miles per hour: ' + windMPH)
 
     // try using template literals  
-    document.querySelector('#cityDate').textContent = `${city} (${today}) ${wxIcon}`;
-    document.querySelector('#temp').textContent = `${tempF} C`;
-    document.querySelector('#wind').textContent = `${windMPH} MPH`;
-    document.querySelector('#humidity').textContent = `${humid}%`;
+    document.querySelector('.cityDate.current').textContent = `${city} (${today}) ${wxIcon}`;
+    document.querySelector('.temp.current').textContent = `${tempF} C`;
+    document.querySelector('.wind.current').textContent = `${windMPH} MPH`;
+    document.querySelector('.humidity.current').textContent = `${humid}%`;
 
     }
 
