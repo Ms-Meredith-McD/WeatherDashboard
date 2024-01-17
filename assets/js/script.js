@@ -3,7 +3,7 @@
 const metersPerSecondToMilesPerHour = 2.23694;
 
 function convertMPStoMPH(metersPerSecond) {
-   return metersPerSecond * metersPerSecondToMilesPerHour;
+   return Math.floor(metersPerSecond * metersPerSecondToMilesPerHour);
 }
 
 // build search button and event listener, not sure what to put in 2nd part of event listener
@@ -56,7 +56,7 @@ function currentWx(forecast) {
     console.log('Icon: ' + wxIcon)
     const temp = forecast.list[0].main.temp;
     console.log(temp + "K")
-    const tempF = (temp -273.15) *9/5 + 32;
+    const tempF = Math.floor((temp -273.15) *9/5 + 32);
     console.log(tempF + 'F')
     const humid = forecast.list[0].main.humidity;
     console.log('Humidity ' + humid + '%')
@@ -67,13 +67,17 @@ function currentWx(forecast) {
     console.log('Wind meters per second: ' + wind)
     console.log('Wind miles per hour: ' + windMPH)
 
+    // CURRENT FORECAST
     // try using template literals  
-    document.querySelector('.cityDate.current').textContent = `${city} (${today}) ${wxIcon}`;
+   
+    const icon = `<img src= "https://openweathermap.org/img/wn/${wxIcon}@2x.png">`
+    document.querySelector('.cityDate.current').innerHTML= `${city} (${today}) ${icon}`;
     document.querySelector('.temp.current').textContent = `${tempF} C`;
     document.querySelector('.wind.current').textContent = `${windMPH} MPH`;
     document.querySelector('.humidity.current').textContent = `${humid}%`;
 
     }
+    // 5-DAY FORECAST
 
 
 
