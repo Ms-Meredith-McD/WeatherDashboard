@@ -3,7 +3,7 @@
 const metersPerSecondToMilesPerHour = 2.23694;
 
 function convertMPStoMPH(metersPerSecond) {
-   return Math.floor(metersPerSecond * metersPerSecondToMilesPerHour);
+    return Math.floor(metersPerSecond * metersPerSecondToMilesPerHour);
 }
 
 // build search button and event listener, not sure what to put in 2nd part of event listener
@@ -20,28 +20,36 @@ const searchThisCity = document.getElementById("cityName")
 async function getLocApi() {
     var cityName = searchThisCity.value
     // console.log(cityName)
-    var getGeoCode = 'https://api.openweathermap.org/geo/1.0/direct?q=' +cityName + '&limit=1&units=imperial&appid=12f732d403aab6d939305ecbc4e4f1c3'
+    var getGeoCode = 'https://api.openweathermap.org/geo/1.0/direct?q=' + cityName + '&limit=1&units=imperial&appid=12f732d403aab6d939305ecbc4e4f1c3'
 
     const getLoc = await fetch(getGeoCode)
     const location = await getLoc.json()
     // console.log(location)
-    
+
     var latitude = location[0].lat;
     // console.log(latitude)
-    
+
     var longitude = location[0].lon;
     // console.log(longitude)
 
-    var latlongWxUrl='https://api.openweathermap.org/data/2.5/forecast?lat=' +latitude + '&lon=' +longitude + '&appid=12f732d403aab6d939305ecbc4e4f1c3'
+    var latlongWxUrl = 'https://api.openweathermap.org/data/2.5/forecast?lat=' + latitude + '&lon=' + longitude + '&appid=12f732d403aab6d939305ecbc4e4f1c3'
     getWx(latlongWxUrl)
 }
 
 // function to get weather data from lat and long
 async function getWx(latlongWxUrl) {
-    const getForecast = await fetch(latlongWxUrl)
-    const forecast = await getForecast.json()
-    console.log(forecast)
-    currentWx(forecast)
+    const getForecast = await fetch(latlongWxUrl);
+    const forecast = await getForecast.json();
+    console.log(forecast);
+    currentWx(forecast);
+
+    // 5-DAY FORECAST
+    let selectedItems = [];
+    for (let i = 0; i < forecast.length; i = i + 3) {
+        const item = forecast[i];
+        selectedItems.push(item);
+    }
+    console.log(selectedItems);
 }
 
 // console log a cityName search and see the results of the "list" array, then I can see the data that I want to pull for the variables
@@ -56,7 +64,7 @@ function currentWx(forecast) {
     console.log('Icon: ' + wxIcon)
     const temp = forecast.list[0].main.temp;
     console.log(temp + "K")
-    const tempF = Math.floor((temp -273.15) *9/5 + 32);
+    const tempF = Math.floor((temp - 273.15) * 9 / 5 + 32);
     console.log(tempF + 'F')
     const humid = forecast.list[0].main.humidity;
     console.log('Humidity ' + humid + '%')
@@ -69,17 +77,14 @@ function currentWx(forecast) {
 
     // CURRENT FORECAST
     // try using template literals  
-   
+
     const icon = `<img src= "https://openweathermap.org/img/wn/${wxIcon}@2x.png">`
-    document.querySelector('.cityDate.current').innerHTML= `${city} (${today}) ${icon}`;
-    document.querySelector('.temp.current').textContent = `${tempF} C`;
-    document.querySelector('.wind.current').textContent = `${windMPH} MPH`;
-    document.querySelector('.humidity.current').textContent = `${humid}%`;
+    document.querySelector('.cityDate.current').innerHTML = `${city} (${today}) ${icon}`;
+    document.querySelector('.temp.current').textContent = `Temperature: ${tempF} C`;
+    document.querySelector('.wind.current').textContent = `Wind Speed: ${windMPH} MPH`;
+    document.querySelector('.humidity.current').textContent = `Humdity: ${humid}%`;
 
-    }
-    // 5-DAY FORECAST
-
-
+}
 
 
 
