@@ -42,14 +42,7 @@ async function getWx(latlongWxUrl) {
     const forecast = await getForecast.json();
     console.log(forecast);
     currentWx(forecast);
-
-    // 5-DAY FORECAST
-    let selectedItems = [];
-    for (let i = 0; i < forecast.length; i = i + 3) {
-        const item = forecast[i];
-        selectedItems.push(item);
-    }
-    console.log(selectedItems);
+    fiveDay(forecast);
 }
 
 // console log a cityName search and see the results of the "list" array, then I can see the data that I want to pull for the variables
@@ -83,13 +76,48 @@ function currentWx(forecast) {
     document.querySelector('.temp.current').textContent = `Temperature: ${tempF} C`;
     document.querySelector('.wind.current').textContent = `Wind Speed: ${windMPH} MPH`;
     document.querySelector('.humidity.current').textContent = `Humdity: ${humid}%`;
-
 }
 
+// 5-DAY FORECAST
+function fiveDay(forecast) {
+    const date = forecast.list[0].dt_txt;
+    const formattedDate = []; // Initialize as an empty array
+    const wxIcon = []; // Initialize as an empty array
+    const temp = forecast.list[0].main.temp;
+    const humid = forecast.list[0].main.humidity;
+    const wind = forecast.list[0].wind.speed;
+    const windMPH = convertMPStoMPH(wind);
 
+    const dates = [];
+    for (let i = 0; i < forecast.list.length; i += 8) {
+        formattedDate.push(dayjs(forecast.list[i].dt_txt).format('M/D/YYYY')); // Push formatted dates to the array
+    }
+    console.log(dates);
 
+    const icons = [];
+    for (let i = 0; i < forecast.list.length; i += 8) {
+        wxIcon.push(forecast.list[i].weather[0].icon); // Push icons to the array
+    }
+    console.log(icons);
 
+    const temperatures = [];
+    for (let i = 0; i < forecast.list.length; i += 8) {
+        temperatures.push(Math.floor((forecast.list[i].main.temp - 273.15) * 9 / 5 + 32)); // Push temperatures to the array
+    }
+    console.log(temperatures);
 
+    const windSpeeds = [];
+    for (let i = 0; i < forecast.list.length; i += 8) {
+        windSpeeds.push(convertMPStoMPH(forecast.list[i].wind.speed)); // Push wind speeds to the array
+    }
+    console.log(windSpeeds);
+
+    const humidity = [];
+    for (let i = 0; i < forecast.list.length; i += 8) {
+        humidity.push(forecast.list[i].main.humidity); // Push humidity values to the array
+    }
+    console.log(humidity);
+}
 
 
 
