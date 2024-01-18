@@ -87,6 +87,7 @@ function fiveDay(forecast) {
     const humid = forecast.list[0].main.humidity;
     const wind = forecast.list[0].wind.speed;
     const windMPH = convertMPStoMPH(wind);
+    const future = document.querySelector('.future');
 
 
     // loop through the days
@@ -112,17 +113,25 @@ function fiveDay(forecast) {
         const humidity = forecast.list[i].main.humidity;
         console.log(humidity);
 
-        // build the dom elements
 
-        const newDomStuff = `
-        <div class="column col-2"></div>
+        const forecastElement = document.createElement('div');
+        forecastElement.classList.add('forecast')
+        
+        // build the forecast elements
+
+        const forecastContent = `
+        <div class="column col-5"></div>
         <h3 class="cityDate five-day">${currDate}</h3>
         <h3 class="wxIcon">${iconImages}</h3>
         <h3 class="temp five-day">Temp: ${temperatures} C</h3>
         <h3 class="wind five-day">Wind: ${windSpeeds} MPH</h3>
         <h3 class="humid five-day">Humidity: ${humidity}%</h3>
         `
-        document.querySelector('.future').innerHTML = newDomStuff;
+        // set the forecast content to the forecast container element
+        forecastElement.innerHTML = forecastContent;
+
+        // Append the forecast container element to the forecast container
+        future.appendChild(forecastElement);
     }}
     
 
