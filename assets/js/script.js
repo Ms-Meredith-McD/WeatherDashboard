@@ -118,6 +118,8 @@ function fiveDay(forecast) {
     }
     console.log(humidity);
 }
+    
+
 
 
 
