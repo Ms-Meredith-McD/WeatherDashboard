@@ -93,35 +93,35 @@ function fiveDay(forecast) {
     for (let i = 0; i < forecast.list.length; i += 8) {
         formattedDate.push(dayjs(forecast.list[i].dt_txt).format('M/D/YYYY')); 
     }
-    console.log(dates);
+    console.log('Dates: ' + dates);
 
     // Push icons to the array
     const icons = [];
     for (let i = 0; i < forecast.list.length; i += 8) {
         wxIcon.push(forecast.list[i].weather[0].icon); 
     }
-    console.log(icons);
+    console.log('Icons: ' + icons);
 
     // Push temperatures to the array
     const temperatures = [];
     for (let i = 0; i < forecast.list.length; i += 8) {
         temperatures.push(Math.floor((forecast.list[i].main.temp - 273.15) * 9 / 5 + 32)); 
     }
-    console.log(temperatures);
+    console.log('Temperatures: ' + temperatures);
 
     // Push wind speeds to the array
     const windSpeeds = [];
     for (let i = 0; i < forecast.list.length; i += 8) {
         windSpeeds.push(convertMPStoMPH(forecast.list[i].wind.speed)); 
     }
-    console.log(windSpeeds);
+    console.log('Wind Speeds: ' + windSpeeds);
     
     // Push humidity values to the array
     const humidity = [];
     for (let i = 0; i < forecast.list.length; i += 8) {
         humidity.push(forecast.list[i].main.humidity); 
     }
-    console.log(humidity);
+    console.log('Humidity Readings: ' + humidity);
 }
     
 
