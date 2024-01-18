@@ -88,33 +88,38 @@ function fiveDay(forecast) {
     const wind = forecast.list[0].wind.speed;
     const windMPH = convertMPStoMPH(wind);
 
+    // Push formatted dates to the array
     const dates = [];
     for (let i = 0; i < forecast.list.length; i += 8) {
-        formattedDate.push(dayjs(forecast.list[i].dt_txt).format('M/D/YYYY')); // Push formatted dates to the array
+        formattedDate.push(dayjs(forecast.list[i].dt_txt).format('M/D/YYYY')); 
     }
     console.log(dates);
 
+    // Push icons to the array
     const icons = [];
     for (let i = 0; i < forecast.list.length; i += 8) {
-        wxIcon.push(forecast.list[i].weather[0].icon); // Push icons to the array
+        wxIcon.push(forecast.list[i].weather[0].icon); 
     }
     console.log(icons);
 
+    // Push temperatures to the array
     const temperatures = [];
     for (let i = 0; i < forecast.list.length; i += 8) {
-        temperatures.push(Math.floor((forecast.list[i].main.temp - 273.15) * 9 / 5 + 32)); // Push temperatures to the array
+        temperatures.push(Math.floor((forecast.list[i].main.temp - 273.15) * 9 / 5 + 32)); 
     }
     console.log(temperatures);
 
+    // Push wind speeds to the array
     const windSpeeds = [];
     for (let i = 0; i < forecast.list.length; i += 8) {
-        windSpeeds.push(convertMPStoMPH(forecast.list[i].wind.speed)); // Push wind speeds to the array
+        windSpeeds.push(convertMPStoMPH(forecast.list[i].wind.speed)); 
     }
     console.log(windSpeeds);
-
+    
+    // Push humidity values to the array
     const humidity = [];
     for (let i = 0; i < forecast.list.length; i += 8) {
-        humidity.push(forecast.list[i].main.humidity); // Push humidity values to the array
+        humidity.push(forecast.list[i].main.humidity); 
     }
     console.log(humidity);
 }
