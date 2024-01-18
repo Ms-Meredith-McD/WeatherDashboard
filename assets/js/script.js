@@ -89,74 +89,43 @@ function fiveDay(forecast) {
     const windMPH = convertMPStoMPH(wind);
 
 
-    // loop throiugh the days
+    // loop through the days
     for (let i = 0; i < forecast.list.length; i += 8) {
-        // get tghe date value 
-        const currDate = forecast.list[i].dt_txt).format('M/D/YYYY')
-        // get the weather icon 
 
+        // get the date values
+        const currDate = dayjs(forecast.list[i].dt_txt).format('M/D/YYYY');
+        console.log(currDate);
 
-        // get the temp 
+        // get the weather icons
+        const iconImages = `<img src= "https://openweathermap.org/img/wn/${forecast.list[i].weather[0].icon}@2x.png">`
+        console.log(iconImages)
 
+        // get the temps
+        const temperatures = Math.floor((forecast.list[i].main.temp - 273.15) * 9 / 5 + 32);
+        console.log(temperatures, 'F')
 
-        // get the humnidity
+        // get the wind speeds
+        const windSpeeds = convertMPStoMPH(forecast.list[i].wind.speed);
+        console.log(windSpeeds, 'MPH');
+
+        // get the humnidity readings
+        const humidity = forecast.list[i].main.humidity;
+        console.log(humidity);
 
         // build the dom elements
 
         const newDomStuff = `
-        <div class="column col-2 day-3"></div>
+        <div class="column col-2"></div>
         <h3 class="cityDate five-day">${currDate}</h3>
-        <h3 class="wxIcon"></h3>
-        <h3 class="temp five-day"></h3>
-        <h3 class="wind five-day"></h3>
-        <h3 class="humid five-day"></h3>
-        
+        <h3 class="wxIcon">${iconImages}</h3>
+        <h3 class="temp five-day">Temp: ${temperatures} C</h3>
+        <h3 class="wind five-day">Wind: ${windSpeeds} MPH</h3>
+        <h3 class="humid five-day">Humidity: ${humidity}%</h3>
         `
-
-    }
-
-
-    // Push formatted dates to the array
-    const dates = [];
-    // formattedDate.push(dayjs(forecast.list[i].dt_txt).format('M/D/YYYY')); 
-    for (let i = 0; i < forecast.list.length; i += 8) {
-        dates.push(dayjs(forecast.list[i].dt_txt).format('M/D/YYYY'))
-    }
-    console.log('Dates: ' + dates);
-
-    // Push icons to the array
-    const icons = [];
-    const iconImages = [];
-    const icon = `<img src= "https://openweathermap.org/img/wn/${wxIcon}@2x.png">`
-    for (let i = 0; i < forecast.list.length; i += 8) {
-        icons.push(forecast.list[i].weather[0].icon);
-        iconImages.push(`<img src= "https://openweathermap.org/img/wn/${forecast.list[i].weather[0].icon}@2x.png">`) 
-    }
-    console.log('Icons: ' + icons);
-    console.log('Icon images: ', iconImages)
-
-    // Push temperatures to the array
-    const temperatures = [];
-    for (let i = 0; i < forecast.list.length; i += 8) {
-        temperatures.push(Math.floor((forecast.list[i].main.temp - 273.15) * 9 / 5 + 32)); 
-    }
-    console.log('Temperatures: ' + temperatures);
-
-    // Push wind speeds to the array
-    const windSpeeds = [];
-    for (let i = 0; i < forecast.list.length; i += 8) {
-        windSpeeds.push(convertMPStoMPH(forecast.list[i].wind.speed)); 
-    }
-    console.log('Wind Speeds: ' + windSpeeds);
+        document.querySelector('.future').innerHTML = newDomStuff;
+    }}
     
-    // Push humidity values to the array
-    const humidity = [];
-    for (let i = 0; i < forecast.list.length; i += 8) {
-        humidity.push(forecast.list[i].main.humidity); 
-    }
-    console.log('Humidity Readings: ' + humidity);
-}
-    
+
 
 
 
