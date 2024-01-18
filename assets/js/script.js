@@ -81,26 +81,59 @@ function currentWx(forecast) {
 // 5-DAY FORECAST
 function fiveDay(forecast) {
     const date = forecast.list[0].dt_txt;
-    const formattedDate = []; // Initialize as an empty array
-    const wxIcon = []; // Initialize as an empty array
+    const formattedDate = dayjs(date).format('M/D/YYYY');
+    const wxIcon = forecast.list[0].weather[0].icon;
     const temp = forecast.list[0].main.temp;
     const humid = forecast.list[0].main.humidity;
     const wind = forecast.list[0].wind.speed;
     const windMPH = convertMPStoMPH(wind);
 
+
+    // loop throiugh the days
+    for (let i = 0; i < forecast.list.length; i += 8) {
+        // get tghe date value 
+        const currDate = forecast.list[i].dt_txt).format('M/D/YYYY')
+        // get the weather icon 
+
+
+        // get the temp 
+
+
+        // get the humnidity
+
+        // build the dom elements
+
+        const newDomStuff = `
+        <div class="column col-2 day-3"></div>
+        <h3 class="cityDate five-day">${currDate}</h3>
+        <h3 class="wxIcon"></h3>
+        <h3 class="temp five-day"></h3>
+        <h3 class="wind five-day"></h3>
+        <h3 class="humid five-day"></h3>
+        
+        `
+
+    }
+
+
     // Push formatted dates to the array
     const dates = [];
+    // formattedDate.push(dayjs(forecast.list[i].dt_txt).format('M/D/YYYY')); 
     for (let i = 0; i < forecast.list.length; i += 8) {
-        formattedDate.push(dayjs(forecast.list[i].dt_txt).format('M/D/YYYY')); 
+        dates.push(dayjs(forecast.list[i].dt_txt).format('M/D/YYYY'))
     }
     console.log('Dates: ' + dates);
 
     // Push icons to the array
     const icons = [];
+    const iconImages = [];
+    const icon = `<img src= "https://openweathermap.org/img/wn/${wxIcon}@2x.png">`
     for (let i = 0; i < forecast.list.length; i += 8) {
-        wxIcon.push(forecast.list[i].weather[0].icon); 
+        icons.push(forecast.list[i].weather[0].icon);
+        iconImages.push(`<img src= "https://openweathermap.org/img/wn/${forecast.list[i].weather[0].icon}@2x.png">`) 
     }
     console.log('Icons: ' + icons);
+    console.log('Icon images: ', iconImages)
 
     // Push temperatures to the array
     const temperatures = [];
