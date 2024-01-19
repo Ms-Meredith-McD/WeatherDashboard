@@ -17,3 +17,8 @@
     border: 1px solid black;
     background-color:rgb(138, 115, 221);
 }
+
+/* save button */
+.saved-button button{
+    display:block;
+}

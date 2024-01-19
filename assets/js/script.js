@@ -30,6 +30,7 @@ function searchSave() {
 //display searched cities as buttons and when clicked display the forecasts for those cities
 function displaySaved() {
     let savedCities = JSON.parse(localStorage.getItem('cities'))
+    document.querySelector('.saved-button').innerHTML = '';
     for (let i = 0; i < savedCities.length; i++) {
         const savedButton = document.createElement('button')
         document.querySelector('.saved-button').appendChild(savedButton)
@@ -61,6 +62,8 @@ async function getLocApi() {
 
     var latlongWxUrl = 'https://api.openweathermap.org/data/2.5/forecast?lat=' + latitude + '&lon=' + longitude + '&appid=12f732d403aab6d939305ecbc4e4f1c3'
     getWx(latlongWxUrl)
+
+    document.querySelector('.forecast').classList.remove('d-none')
 }
 
 // function to get weather data from lat and long
@@ -98,6 +101,7 @@ function currentWx(forecast) {
 
     // CURRENT FORECAST
     // try using template literals  
+
 
     const icon = `<img src= "https://openweathermap.org/img/wn/${wxIcon}@2x.png">`
     document.querySelector('.cityDate.current').innerHTML = `${city} (${today}) ${icon}`;
