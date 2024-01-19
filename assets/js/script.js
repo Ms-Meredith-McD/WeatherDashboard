@@ -27,7 +27,7 @@ function searchSave() {
     future.innerHTML ='';
     searchThisCity.value = '';
 }
-//need to save searches to local storage and display most recent first and so on
+//display searched cities as buttons and when clicked display the forecasts for those cities
 let savedCities = JSON.parse(localStorage.getItem('cities'))
 for (let i = 0; i < savedCities.length; i ++) {
 const savedButton = document.createElement('button')
