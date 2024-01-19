@@ -18,27 +18,29 @@ function searchSave() {
     let savedCities = JSON.parse(localStorage.getItem('cities'))
     if (!savedCities) {
         savedCities = [searchThisCity.value]
-        localStorage.setItem('cities', JSON.stringify(savedCities)) 
+        localStorage.setItem('cities', JSON.stringify(savedCities))
     } else {
         newCity = searchThisCity.value
         savedCities.push(newCity)
         localStorage.setItem('cities', JSON.stringify(savedCities))
     }
-    future.innerHTML ='';
+    future.innerHTML = '';
     searchThisCity.value = '';
 }
 //display searched cities as buttons and when clicked display the forecasts for those cities
 function displaySaved() {
-let savedCities = JSON.parse(localStorage.getItem('cities'))
-for (let i = 0; i < savedCities.length; i ++) {
-const savedButton = document.createElement('button')
-document.querySelector('.saved-button').appendChild(savedButton)
-savedButton.textContent = savedCities[i];
-savedButton.addEventListener('click', function(event){
-    searchThisCity.value = event.target.textContent
-    getLocApi()
-})
-}}
+    let savedCities = JSON.parse(localStorage.getItem('cities'))
+    for (let i = 0; i < savedCities.length; i++) {
+        const savedButton = document.createElement('button')
+        document.querySelector('.saved-button').appendChild(savedButton)
+        savedButton.textContent = savedCities[i];
+        savedButton.addEventListener('click', function (event) {
+            searchThisCity.value = event.target.textContent
+            getLocApi()
+
+        })
+    }
+}
 
 // function that uses the api call to get lat and long from city name
 async function getLocApi() {
@@ -49,7 +51,7 @@ async function getLocApi() {
     const getLoc = await fetch(getGeoCode)
     const location = await getLoc.json()
     // console.log(location)
-    future.innerHTML ='';
+    future.innerHTML = '';
     searchThisCity.value = '';
     var latitude = location[0].lat;
     // console.log(latitude)
@@ -99,7 +101,7 @@ function currentWx(forecast) {
 
     const icon = `<img src= "https://openweathermap.org/img/wn/${wxIcon}@2x.png">`
     document.querySelector('.cityDate.current').innerHTML = `${city} (${today}) ${icon}`;
-    document.querySelector('.temp.current').textContent = `Temperature: ${tempF} C`;
+    document.querySelector('.temp.current').textContent = `Temperature: ${tempF} F`;
     document.querySelector('.wind.current').textContent = `Wind Speed: ${windMPH} MPH`;
     document.querySelector('.humidity.current').textContent = `Humdity: ${humid}%`;
 }
@@ -145,7 +147,7 @@ function fiveDay(forecast) {
         <div class="column col-2">
         <h3 class="cityDate five-day">${currDate}</h3>
         <h3 class="wxIcon">${iconImages}</h3>
-        <h3 class="temp five-day">Temp: ${temperatures} C</h3>
+        <h3 class="temp five-day">Temp: ${temperatures} F</h3>
         <h3 class="wind five-day">Wind: ${windSpeeds} MPH</h3>
         <h3 class="humid five-day">Humidity: ${humidity}%</h3>
         </div>
