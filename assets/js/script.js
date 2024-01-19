@@ -28,6 +28,7 @@ function searchSave() {
     searchThisCity.value = '';
 }
 //display searched cities as buttons and when clicked display the forecasts for those cities
+function displaySaved() {
 let savedCities = JSON.parse(localStorage.getItem('cities'))
 for (let i = 0; i < savedCities.length; i ++) {
 const savedButton = document.createElement('button')
@@ -37,7 +38,7 @@ savedButton.addEventListener('click', function(event){
     searchThisCity.value = event.target.textContent
     getLocApi()
 })
-}
+}}
 
 // function that uses the api call to get lat and long from city name
 async function getLocApi() {
@@ -67,6 +68,7 @@ async function getWx(latlongWxUrl) {
     console.log(forecast);
     currentWx(forecast);
     fiveDay(forecast);
+    displaySaved();
 }
 
 // console log a cityName search and see the results of the "list" array, then I can see the data that I want to pull for the variables

@@ -7,18 +7,13 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 /* forecast */
-.forecast {
+.day-1 {
     border: 1px solid black;
+    background-color:blueviolet;
 }
-/* current */
-.column .col-2 .day-1 {
-    border: 1px solid black;
-}
-/* future col-2*/
-.future .col-2 {
-    border: 1px solid black;
-}
-/* future */
+
+/* five-day */
 .future {
-    border: 1px solid black; 
+    border: 1px solid black;
+    background-color:rgb(138, 115, 221);
 }
