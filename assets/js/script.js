@@ -8,13 +8,36 @@ function convertMPStoMPH(metersPerSecond) {
 
 // build search button and event listener, not sure what to put in 2nd part of event listener
 const searchButton = document.getElementById('searchButton');
-
-searchButton.addEventListener('click', getLocApi)
-
-//need to save searches to local storage and display most recent first and so on
-
 const searchThisCity = document.getElementById("cityName")
-// var getGeoCode = 'http://api.openweathermap.org/geo/1.0/direct?q=' +searchThisCity + '&limit=1&units=imperial&appid=12f732d403aab6d939305ecbc4e4f1c3'
+const future = document.querySelector('.future');
+
+searchButton.addEventListener('click', searchSave)
+
+function searchSave() {
+    getLocApi()
+    let savedCities = JSON.parse(localStorage.getItem('cities'))
+    if (!savedCities) {
+        savedCities = [searchThisCity.value]
+        localStorage.setItem('cities', JSON.stringify(savedCities)) 
+    } else {
+        newCity = searchThisCity.value
+        savedCities.push(newCity)
+        localStorage.setItem('cities', JSON.stringify(savedCities))
+    }
+    future.innerHTML ='';
+    searchThisCity.value = '';
+}
+//need to save searches to local storage and display most recent first and so on
+let savedCities = JSON.parse(localStorage.getItem('cities'))
+for (let i = 0; i < savedCities.length; i ++) {
+const savedButton = document.createElement('button')
+document.querySelector('.saved-button').appendChild(savedButton)
+savedButton.textContent = savedCities[i];
+savedButton.addEventListener('click', function(event){
+    searchThisCity.value = event.target.textContent
+    getLocApi()
+})
+}
 
 // function that uses the api call to get lat and long from city name
 async function getLocApi() {
@@ -25,7 +48,8 @@ async function getLocApi() {
     const getLoc = await fetch(getGeoCode)
     const location = await getLoc.json()
     // console.log(location)
-
+    future.innerHTML ='';
+    searchThisCity.value = '';
     var latitude = location[0].lat;
     // console.log(latitude)
 
@@ -114,26 +138,28 @@ function fiveDay(forecast) {
         console.log(humidity);
 
 
-        const forecastElement = document.createElement('div');
-        forecastElement.classList.add('forecast')
-        
+        // const forecastElement = document.createElement('div');
+        // forecastElement.classList.add('forecast')
+
         // build the forecast elements
 
         const forecastContent = `
-        <div class="column col-5"></div>
+        <div class="column col-2">
         <h3 class="cityDate five-day">${currDate}</h3>
         <h3 class="wxIcon">${iconImages}</h3>
         <h3 class="temp five-day">Temp: ${temperatures} C</h3>
         <h3 class="wind five-day">Wind: ${windSpeeds} MPH</h3>
         <h3 class="humid five-day">Humidity: ${humidity}%</h3>
+        </div>
         `
         // set the forecast content to the forecast container element
-        forecastElement.innerHTML = forecastContent;
+        future.innerHTML += forecastContent;
 
         // Append the forecast container element to the forecast container
-        future.appendChild(forecastElement);
-    }}
-    
+        // future.appendChild(forecastElement);
+    }
+}
+
 
 
 

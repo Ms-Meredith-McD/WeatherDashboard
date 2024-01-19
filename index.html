@@ -22,20 +22,20 @@
             <h2>Search for a City:</h2>
             <input type="text" id="cityName" placeholder="Enter City Name" name="cityName">
             <button type="button" id="searchButton">Search</button> 
+            <div class="saved-button"></div>
             <!-- when I create element for city history in JS, make sure and add the row to col-3 -->
             </div>
             <!-- building the container for the current forecast -->
             <div class='col forecast col-9'>
-                <div class='row current'></div>
-                <div class='row fiveday'>
-                    <div class="column col-2 day-1">
+                <div class='row current'>
+                    <div class="column col-6 day-1">
                         <h1 class="cityDate current"></h1> 
                         <h3 class="temp current"></h3>
                         <h3 class="wind current"></h3>
                         <h3 class="humidity current"></h3>
                     </div>
                     <!-- 5 Day Forecast -->
-                    <div class="future"></div>
+                    <div class="row future"></div>
             </div>
         </div>
     </div>

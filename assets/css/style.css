@@ -11,6 +11,14 @@
     border: 1px solid black;
 }
 /* current */
-.column.col-2.day-1 {
+.column .col-2 .day-1 {
     border: 1px solid black;
+}
+/* future col-2*/
+.future .col-2 {
+    border: 1px solid black;
+}
+/* future */
+.future {
+    border: 1px solid black; 
 }
