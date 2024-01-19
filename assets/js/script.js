@@ -137,10 +137,6 @@ function fiveDay(forecast) {
         const humidity = forecast.list[i].main.humidity;
         console.log(humidity);
 
-
-        // const forecastElement = document.createElement('div');
-        // forecastElement.classList.add('forecast')
-
         // build the forecast elements
 
         const forecastContent = `
@@ -155,8 +151,6 @@ function fiveDay(forecast) {
         // set the forecast content to the forecast container element
         future.innerHTML += forecastContent;
 
-        // Append the forecast container element to the forecast container
-        // future.appendChild(forecastElement);
     }
 }
 
